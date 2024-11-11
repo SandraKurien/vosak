@@ -112,6 +112,7 @@ async function saveEventDetails(eventId) {
     console.error("Error updating event details:", error);
     alert("Event and Budget details updated successfully!");
   }
+  window.location.href="upcoming.html";
 }
 
 // Fetch and display event details when the page loads
