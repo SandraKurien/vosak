@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getFirestore, doc, getDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc, collection, query, where, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -31,10 +31,10 @@ async function fetchEventDetails(eventId) {
       
       // Set event details
       document.getElementById("event-name").textContent = eventData.eventName;
-      document.getElementById("event-venue").textContent = eventData.venue;
-      document.getElementById("event-date").textContent = eventData.date;
-      document.getElementById("event-duration").textContent = eventData.duration;
-      document.getElementById("event-team-lead").textContent = eventData.teamLead;
+      document.getElementById("event-venue").value = eventData.venue;
+      document.getElementById("event-date").value = eventData.date;
+      document.getElementById("event-duration").value = eventData.duration;
+      document.getElementById("event-team-lead").value = eventData.teamLead;
 
       // Now fetch the budget details based on the event name
       const budgetQuery = query(
@@ -49,11 +49,11 @@ async function fetchEventDetails(eventId) {
           const budgetData = budgetDoc.data();
 
           // Set budget details
-          document.getElementById("budget-resources").textContent = budgetData.resources;
-          document.getElementById("budget-venue").textContent = budgetData.venue;
-          document.getElementById("budget-food").textContent = budgetData.food;
-          document.getElementById("budget-equipment").textContent = budgetData.equipment;
-          document.getElementById("budget-total").textContent = budgetData.total;
+          document.getElementById("budget-resources").value = budgetData.resources;
+          document.getElementById("budget-venue").value = budgetData.venue;
+          document.getElementById("budget-food").value = budgetData.food;
+          document.getElementById("budget-equipment").value = budgetData.equipment;
+          document.getElementById("budget-total").value = budgetData.total;
         });
       } else {
         console.log("No budget data found for this event.");
@@ -69,6 +69,51 @@ async function fetchEventDetails(eventId) {
   }
 }
 
+async function saveEventDetails(eventId) {
+  try {
+    // Get updated values from the input fields
+    const updatedEventData = {
+      venue: document.getElementById("event-venue").value,
+      date: document.getElementById("event-date").value,
+      duration: document.getElementById("event-duration").value,
+      teamLead: document.getElementById("event-team-lead").value
+    };
+
+    // Update event document in Firestore
+    const eventRef = doc(db, "events", eventId);
+    await updateDoc(eventRef, updatedEventData);
+
+    const updatedBudgetData = {
+      resources: document.getElementById("budget-resources").value,
+      venue: document.getElementById("budget-venue").value,
+      food: document.getElementById("budget-food").value,
+      equipment: document.getElementById("budget-equipment").value,
+      total: document.getElementById("budget-total").value
+    };
+
+    // Update budget document in Firestore
+    const budgetQuery = query(
+      collection(db, "budgets"),
+      where("eventName", "==", updatedEventData.eventName)
+    );
+
+    const budgetQuerySnapshot = await getDocs(budgetQuery);
+
+    if (!budgetQuerySnapshot.empty) {
+      budgetQuerySnapshot.forEach(async (budgetDoc) => {
+        const budgetRef = doc(db, "budgets", budgetDoc.id);
+        await updateDoc(budgetRef, updatedBudgetData);
+      });
+    }
+
+    alert("Event and Budget details updated successfully!");
+
+  } catch (error) {
+    console.error("Error updating event details:", error);
+    alert("Event and Budget details updated successfully!");
+  }
+}
+
 // Fetch and display event details when the page loads
 document.addEventListener("DOMContentLoaded", () => {
   const eventId = getEventIdFromUrl();
@@ -77,4 +122,15 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     alert("No event ID found in URL.");
   }
+
+  // Save changes when the Save Changes button is clicked
+  document.getElementById("save-btn").addEventListener("click", () => {
+    const eventId = getEventIdFromUrl();
+    if (eventId) {
+      saveEventDetails(eventId);
+    } else {
+      alert("No event ID found in URL.");
+    }
+  });
 });
+
