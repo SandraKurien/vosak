@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Events</title>
+    <link rel="stylesheet" href="upcoming.css">
+</head>
+<body>
+    <!-- User Info section with output boxes for username and ID -->
+    <div class="user-info">
+        <div class="output-box">
+            <span id="user-name">Loading...</span>
+        </div>
+        <div class="output-box">
+            <span id="user-email">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Main content area (title and event table) -->
+    <div class="main-content">
+        <h1>Upcoming Events</h1>
+
+        <!-- Table for displaying upcoming events -->
+        <table class="events-table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Event Name</th>
+                    <th>Date</th>
+                    <th>View Details</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody id="events-tbody">
+                <!-- Event rows will be dynamically inserted here -->
+            </tbody>
+        </table>
+
+        <!-- Message for No Upcoming Events (below the table) -->
+        <div id="no-events-message" style="display: none; text-align: center; margin-top: 20px; font-size: 24px; font-weight: bold; color: #555;">
+            <p>No upcoming events!</p>
+        </div>
+    </div>
+
+    <!-- Options on the right side -->
+    <div class="options-menu">
+        <a href="event.html" class="option">Add an Event</a>
+        <a href="budget.html" class="option">Plan Your Budget</a>
+        <a href="contact.html" class="option">Contact</a>
+    </div>
+
+    <script type="module" src="upcoming.js"></script>
+</body>
+</html>

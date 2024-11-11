@@ -1,0 +1,116 @@
+/* Reset and Typography */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #121212;
+    color: #ffffff;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #f0f0f0;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+p {
+    color: #b3b3b3;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form label {
+    font-size: 16px;
+    color: #f0f0f0;
+}
+
+.contact-form input, .contact-form textarea {
+    background-color: #292929;
+    color: #ffffff;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    outline: none;
+    box-shadow: 0 0 8px #1DB954;
+}
+
+.contact-form button {
+    padding: 15px;
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #1a954a;
+    transform: scale(1.05);
+}
+
+.contact-info {
+    margin-top: 40px;
+    text-align: center;
+    color: #b3b3b3;
+}
+
+.contact-info p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.map-container {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.map-container iframe {
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.map-container iframe:hover {
+    transform: scale(1.02);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .contact-form input, .contact-form textarea {
+        font-size: 14px;
+    }
+
+    .contact-form button {
+        font-size: 16px;
+    }
+}

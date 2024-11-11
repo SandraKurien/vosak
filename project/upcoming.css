@@ -1,0 +1,121 @@
+/* General body styling */
+body {
+  background: #f5f7fa;
+  font-family: Arial, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+/* User information output boxes (top-right corner) */
+.user-info {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  text-align: right;
+  color: #555;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Styling for each output box */
+.output-box {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 6px 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 120px;
+}
+
+/* Main content area (title and event table) */
+.main-content {
+  flex: 3;
+  padding: 20px;
+  margin-left: 20px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Table Styling */
+.events-table {
+  width: 66%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  margin-left: 0;
+}
+
+.events-table th, .events-table td {
+  padding: 8px 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+/* Column widths */
+.events-table th, .events-table td {
+  max-width: 100px;
+  word-wrap: break-word;
+}
+
+/* Increased text size inside columns */
+.events-table td {
+  font-size: 1.1rem;
+  background-color: #fff;
+}
+
+/* Column Heading Styling */
+.events-table th {
+  background-color: #007BFF;
+  color: white;
+  font-size: 1rem;
+  padding: 8px 15px;
+}
+
+/* Styling for the Remove link */
+.events-table a {
+  color: #007BFF;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.events-table a:hover {
+  color: #ff0000;
+}
+
+/* Right-side options menu */
+.options-menu {
+  position: absolute;
+  top: 50%;
+  right: 120px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Styling for each option link */
+.option {
+  font-size: 1.5rem;
+  color: #007BFF;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.option:hover {
+  color: #090909;
+}

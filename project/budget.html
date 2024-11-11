@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUDGET</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .form-group label {
+            flex: 1;
+            margin-right: 10px;
+            min-width: 120px; /* Ensures labels are not too small */
+            font-size: 1.5em; /* Increase label size */
+        }
+        input, textarea {
+            flex: 3;
+            padding: 15px;
+            border: 1px solid #666;
+            border-radius: 4px;
+            background-color: #333;
+            color: white;
+        }
+        textarea {
+            height: 150px; /* Increase text area height */
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #1abc9c;
+        }
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            color: #1abc9c;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #3db245;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #199993;
+        }
+    </style>
+</head>
+<body>
+    <h1>BUDGET</h1>
+    <form>
+        <div class="form-group">
+            <label for="event-name">Event Name:</label>
+            <input type="text" id="event-name" name="event-name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="resources">Resources:</label>
+            <input type="number" id="resources" name="resources" required>
+        </div>
+
+        <div class="form-group">
+            <label for="venue">Venue:</label>
+            <input type="number" id="venue" name="venue" required>
+        </div>
+
+        <div class="form-group">
+            <label for="food">Food:</label>
+            <input type="number" id="food" name="food" required>
+        </div>
+
+        <div class="form-group">
+            <label for="equipment">Equipment:</label>
+            <input type="number" id="equipment" name="equipment" required>
+        </div>
+
+        <!-- No total field here, as it's calculated automatically -->
+        
+        <button type="submit">Submit</button>
+    </form>
+    <script type="module" src="budget.js"></script>
+</body>
+</html>

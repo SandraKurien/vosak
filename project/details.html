@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link rel="stylesheet" href="details.css">
+</head>
+<body>
+    <!-- Page Title -->
+    <h1>Details</h1>
+
+    <!-- Container to divide the page into two halves -->
+    <div class="container">
+        <!-- Left Half: Event Information -->
+        <div class="right-half">
+            <!-- Event Title (without output box) -->
+            <h2>EVENT</h2>
+
+            <!-- Event Name Box -->
+            <div class="detail">
+                <strong>Event Name:</strong>
+                <div class="output-box" id="event-name">Event Name from Database</div>
+            </div>
+
+            <!-- Add space between Event Name and Venue -->
+            <div class="spacing"></div>
+
+            <!-- Event Details -->
+            <div class="details-box">
+                <div class="detail">
+                    <strong>Venue:</strong>
+                    <div class="output-box" id="event-venue">Venue from Database</div>
+                </div>
+                <div class="detail">
+                    <strong>Date:</strong>
+                    <div class="output-box" id="event-date">Date from Database</div>
+                </div>
+                <div class="detail">
+                    <strong>Duration:</strong>
+                    <div class="output-box" id="event-duration">Duration from Database</div>
+                </div>
+                <div class="detail">
+                    <strong>Team Lead:</strong>
+                    <div class="output-box" id="event-team-lead">Team Lead from Database</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Half: Budget Information -->
+        <div class="right-half">
+            <!-- Budget Title centered -->
+            <h2>BUDGET</h2>
+            
+            <!-- Budget Details -->
+            <div class="details-box">
+                <div class="detail">
+                    <strong>Resources:</strong>
+                    <div class="output-box" id="budget-resources">Resources from Database</div>
+                </div>
+                <div class="detail">
+                    <strong>Venue:</strong>
+                    <div class="output-box" id="budget-venue">Venue Budget from Database</div>
+                </div>
+                <div class="detail">
+                    <strong>Food:</strong>
+                    <div class="output-box" id="budget-food">Food Budget from Database</div>
+                </div>
+                <div class="detail">
+                    <strong>Equipment:</strong>
+                    <div class="output-box" id="budget-equipment">Equipment Budget from Database</div>
+                </div>
+                <!-- Total Budget section -->
+                <div class="detail">
+                    <strong>Total Budget:</strong>
+                    <div class="output-box" id="budget-total">Total Budget from Database</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="details.js"></script>
+</body>
+</html>
