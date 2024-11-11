@@ -30,19 +30,19 @@
             <div class="details-box">
                 <div class="detail">
                     <strong>Venue:</strong>
-                    <div class="output-box" id="event-venue">Venue from Database</div>
+                    <input type="text" id="event-venue" value="Venue from Database">
                 </div>
                 <div class="detail">
                     <strong>Date:</strong>
-                    <div class="output-box" id="event-date">Date from Database</div>
+                    <input type="date" id="event-date" value="Date from Database">
                 </div>
                 <div class="detail">
                     <strong>Duration:</strong>
-                    <div class="output-box" id="event-duration">Duration from Database</div>
+                    <input type="number" id="event-duration" value="Duration from Database">
                 </div>
                 <div class="detail">
                     <strong>Team Lead:</strong>
-                    <div class="output-box" id="event-team-lead">Team Lead from Database</div>
+                    <input type="text" id="event-team-lead" value="Team Lead from Database">
                 </div>
             </div>
         </div>
@@ -56,28 +56,34 @@
             <div class="details-box">
                 <div class="detail">
                     <strong>Resources:</strong>
-                    <div class="output-box" id="budget-resources">Resources from Database</div>
+                    <input type="number" id="budget-resources" value="Resources from Database">
                 </div>
                 <div class="detail">
                     <strong>Venue:</strong>
-                    <div class="output-box" id="budget-venue">Venue Budget from Database</div>
+                    <input type="number" id="budget-venue" value="Venue Budget from Database">
                 </div>
                 <div class="detail">
                     <strong>Food:</strong>
-                    <div class="output-box" id="budget-food">Food Budget from Database</div>
+                    <input type="number" id="budget-food" value="Food Budget from Database">
                 </div>
                 <div class="detail">
                     <strong>Equipment:</strong>
-                    <div class="output-box" id="budget-equipment">Equipment Budget from Database</div>
+                    <input type="number" id="budget-equipment" value="Equipment Budget from Database">
                 </div>
                 <!-- Total Budget section -->
                 <div class="detail">
                     <strong>Total Budget:</strong>
-                    <div class="output-box" id="budget-total">Total Budget from Database</div>
+                    <input type="number" id="budget-total" value="Total Budget from Database">
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Save Changes Button -->
+    <div class="container">
+        <button id="save-btn">Save Changes</button>
+    </div>
+
     <script type="module" src="details.js"></script>
 </body>
 </html>
