@@ -104,6 +104,14 @@
             transform: scale(1.05);
         }
 
+        /* Error message styling */
+        #error-message {
+            display: none;
+            color: red;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
         /* Fade-in animation */
         @keyframes fadeInUp {
             0% {
@@ -153,6 +161,8 @@
             <input type="text" id="teamLead" name="teamLead" required>
         </div>
         <button type="submit" class="submit-btn">Submit Event</button>
+        <!-- Error message for conflicting events -->
+        <div id="error-message"></div>
     </form>
 </div>
 
