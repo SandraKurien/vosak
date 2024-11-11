@@ -1,6 +1,6 @@
-// Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -9,41 +9,86 @@ const firebaseConfig = {
   projectId: "vosak-dd586",
   storageBucket: "vosak-dd586.appspot.com",
   messagingSenderId: "688820259475",
-  appId: "1:688820259475:web:d8e7aa0cbe5c97ffcf5b66"
+  appId: "1:688820259475:web:6eab282c6d3d2246cf5b66"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth();
 
-// Select the event form
-const eventForm = document.getElementById('eventForm');
+const eventNameInput = document.getElementById("eventName");
+const eventDateInput = document.getElementById("date");
+const eventVenueInput = document.getElementById("venue");
+const eventDurationInput = document.getElementById("duration");
+const eventTeamLeadInput = document.getElementById("teamLead");
+const addEventButton = document.querySelector(".submit-btn");
+const errorMessageElement = document.getElementById("error-message");
 
-// Handle form submission
-eventForm.addEventListener('submit', async (e) => {
-  e.preventDefault(); // Prevent the default form submission
-
-  const eventName = document.getElementById('eventName').value;
-  const venue = document.getElementById('venue').value;
-  const date = document.getElementById('date').value;
-  const duration = document.getElementById('duration').value;
-  const teamLead = document.getElementById('teamLead').value;
-
+// Add Event function
+async function addEvent(eventName, eventDate, eventVenue, eventDuration, eventTeamLead) {
   try {
-    // Add a new document to the Firestore collection
-    await addDoc(collection(db, 'events'), {
+    // Check for conflicting events
+    const conflictingEvents = await checkForConflictingEvents(eventDate, eventVenue);
+    if (conflictingEvents) {
+      // Display error message
+      errorMessageElement.textContent = "An event with the same date and venue already exists.";
+      errorMessageElement.style.display = "block";
+      return; // Do not proceed with adding the event
+    }
+
+    // Add the new event to Firestore
+    await addDoc(collection(db, "events"), {
       eventName: eventName,
-      venue: venue,
-      date: date,
-      duration: duration,
-      teamLead: teamLead,
-      timestamp: new Date()
+      date: eventDate,
+      venue: eventVenue,
+      duration: eventDuration,
+      teamLead: eventTeamLead
     });
-    
-    window.location.href="upcoming.html"
-    eventForm.reset(); // Reset the form after submission
+
+    // Clear the error message
+    errorMessageElement.textContent = "";
+    errorMessageElement.style.display = "none";
+
+    // Optionally, clear input fields after successful addition
+    eventNameInput.value = "";
+    eventDateInput.value = "";
+    eventVenueInput.value = "";
+    eventDurationInput.value = "";
+    eventTeamLeadInput.value = "";
+
+    // Optionally, display success message or redirect to another page
+    alert("Event added successfully!");
+    window.location.href="upcoming.html";
+
   } catch (error) {
-    console.error('Error adding document: ', error);
-    alert('Error adding event. Please try again.');
+    console.error("Error adding event: ", error);
+  }
+}
+
+// Function to check for conflicting events
+async function checkForConflictingEvents(eventDate, eventVenue) {
+  const q = query(collection(db, "events"), where("date", "==", eventDate), where("venue", "==", eventVenue));
+  const querySnapshot = await getDocs(q);
+  return !querySnapshot.empty; // Return true if there are conflicting events
+}
+
+// Form submission handler
+document.getElementById("eventForm").addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const eventName = eventNameInput.value.trim();
+  const eventDate = eventDateInput.value.trim();
+  const eventVenue = eventVenueInput.value.trim();
+  const eventDuration = eventDurationInput.value.trim();
+  const eventTeamLead = eventTeamLeadInput.value.trim();
+
+  // Validate all fields are filled
+  if (eventName && eventDate && eventVenue && eventDuration && eventTeamLead) {
+    await addEvent(eventName, eventDate, eventVenue, eventDuration, eventTeamLead);
+  } else {
+    errorMessageElement.textContent = "Please fill in all the fields.";
+    errorMessageElement.style.display = "block";
   }
 });
+
